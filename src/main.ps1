@@ -41,7 +41,7 @@ if ($domainName -inotmatch 'localhost' -and $systemCheck["PS"]) {
 
     Create-QuickAccessLinks $listOfSites -prepend $prependToLinkTitle -icon $icon -protocol $protocol
 
-    if ($disableHomeAndShared -gt 0) {
+    if ($disableHomeAndShared -eq 0) {
         Create-HomeAndSharedLinks
     }
 }

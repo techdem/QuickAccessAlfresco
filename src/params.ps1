@@ -4,6 +4,6 @@ Param(
     [String]$prependToLinkTitle = "Site - ",
     [String]$icon,
     [String]$protocol = "",
-    [String]$disableHomeAndShared = "1",
+    [String]$disableHomeAndShared = "0",
     [String]$folderName = "Alfresco"
 )
