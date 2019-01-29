@@ -7,13 +7,13 @@ Describe "Generate-Config" {
     $appData = "TestDrive:\"
     $mockParams = @{"sites" = $convertedJSON; "switches" = @{"domainName" = 'localhost:8443'; "mapDomain" = "localhost"; "prependToLinkTitle" = "Alfresco Sites - "; "icon" = ""; "protocol" = ""; "disableHomeAndShared" = $false};}
 
-    It "Should generate config file" {
+    It "Should create new config file" {
         $generateConfig = Generate-Config $mockParams
         $doesConfigFileExist = Test-Path "$appData\config.json"
         $generateConfig | Should be $doesConfigFileExist
     }
 
-    It "Should not generate config file" {
+    It "Should append to existing config file" {
         $generateConfig = Generate-Config $mockParams
         $generateConfig | Should be $false
     }

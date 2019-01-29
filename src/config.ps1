@@ -1,10 +1,16 @@
 function Generate-Config ($fromParams=@{}) {
     $doesConfigExist = Test-Path "$appData\config.json"
+    $fromParams | ConvertTo-Json | Set-Content "$appData\config.json"
     if(!$doesConfigExist) {
         $fromParams | ConvertTo-Json | Set-Content "$appData\config.json"
         return $true
     }
     return $false
+}
+
+function Read-Config {
+    $getConfigContent = Get-Content -Path "$appData\config.json" | Out-String | ConvertFrom-Json
+    return $getConfigContent
 }
 
 function Parse-Config {
@@ -23,9 +29,4 @@ function Parse-Config {
         }
     }
     return @{"switches" = $parseSwitches; "sites" = $parseSites;}
-}
-
-function Read-Config {
-    $getConfigContent = Get-Content -Path "$appData\config.json" | Out-String | ConvertFrom-Json
-    return $getConfigContent
 }
