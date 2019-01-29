@@ -37,7 +37,7 @@ if ($domainName -inotmatch 'localhost' -and $systemCheck["PS"]) {
     $listOfSites = Get-ListOfSites $fromUrl
     Generate-Config @{"switches" = $PsBoundParameters; "sites" = $listOfSites}
     
-    #Create-ScheduledTask "QuickAccessAlfresco"
+    Create-ScheduledTask "QuickAccessAlfresco"
 
     Create-QuickAccessLinks $listOfSites -prepend $prependToLinkTitle -icon $icon -protocol $protocol
 
