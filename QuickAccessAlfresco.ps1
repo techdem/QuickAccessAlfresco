@@ -219,12 +219,12 @@ function Parse-Config {
 }
 function Create-ScheduledTask($taskName) {
     $config = Parse-Config
-    $taskPath = "C:\Projects\QuickAccessAlfresco\runQAA.vbs"
+    $taskPath = ".\runQAA.vbs"
 
-    $taskScript = "Dim WinScriptHost
+    Set-Content $taskPath "Dim WinScriptHost
     Set WinScriptHost = CreateObject(`"WScript.Shell`")
-    WinScriptHost.Run(`"powershell.exe -executionpolicy bypass -command C:\Projects\QuickAccessAlfresco\QuickAccessAlfresco.ps1 $($config[`"switches`"])`"), 0
-    Set WinScriptHost = Nothing" | Set-Content $taskPath
+    WinScriptHost.Run(`"powershell.exe -executionpolicy bypass -command .\QuickAccessAlfresco.ps1 $($config[`"switches`"])`"), 0
+    Set WinScriptHost = Nothing"
 
     $taskIsRunning = Start-Process schtasks.exe -ArgumentList "/query /tn $taskName" -WindowStyle hidden -ErrorAction SilentlyContinue
 
